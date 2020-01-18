@@ -102,3 +102,8 @@ export default{
 | :------------- | :------------------------------ | :------ | :----- | :--- |  
 | v-model | 选中项的label | string/number/boolean | - | - |
 | disabled | 是否禁用 | boolean | - | false |
+
+### evan-radio-group events
+| name | 说明 | 回调参数 |
+| :--- | :---------------- | ------------------|
+| change | 选中的值发生变化 | 新的选中的值 |
