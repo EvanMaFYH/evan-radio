@@ -58,6 +58,10 @@
 			preventClick: {
 				type: Boolean,
 				default: false
+			},
+			clearable: {
+				type: Boolean,
+				default: false
 			}
 		},
 		computed: {
@@ -168,6 +172,13 @@
 					if (this.isGroup) {
 						let parent = this.getParent()
 						parent.onRadioChange(this.label)
+					}
+				} else if (this.clearable) {
+					this.currentValue = null
+					this.$emit('input', this.currentValue)
+					if (this.isGroup) {
+						let parent = this.getParent()
+						parent.onRadioChange(null)
 					}
 				}
 			},

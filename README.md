@@ -86,6 +86,7 @@ export default{
 | icon-size | 图标的大小 | number | - | 20 |
 | title-style | 单选框的文本样式 | object | - | - |
 | prevent-click | 阻止内部的点击事件，只在自定义样式由外部触发select事件时设置为true | boolean | - | false |
+| clearable | 选中的选项再次点击能否取消选中 | boolean | - | false |
 
 ### evan-radio methods
 | 方法名   | 说明       | 参数     |   

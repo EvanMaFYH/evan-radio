@@ -63,6 +63,15 @@
 		</evan-radio-group>
 
 		<view class="evan-radio-show__title">
+			<text class="evan-radio-show__title__item">选中项可以取消</text>
+		</view>
+		<evan-radio-group @change="onGroupChange" v-model="colorClear">
+			<view class="evan-radio-show__group-item" v-for="item in colorList" :key="item.value">
+				<evan-radio clearable :label="item.value">{{item.label}}</evan-radio>
+			</view>
+		</evan-radio-group>
+
+		<view class="evan-radio-show__title">
 			<text class="evan-radio-show__title__item">自定义样式列表单选框组</text>
 		</view>
 		<evan-radio-group @change="onGroupChange" v-model="color2">
@@ -105,6 +114,7 @@
 				disabledValue: 'disabled1',
 				color1: 'red',
 				color2: 'green',
+				colorClear: 'red',
 				colorList: [{
 						label: '红色',
 						value: 'red'
@@ -138,9 +148,9 @@
 			onRadioClick(index) {
 				this.$refs.listRadio[index].select()
 			},
-			goNvue(){
+			goNvue() {
 				uni.navigateTo({
-					url:'/pages/app/app'
+					url: '/pages/app/app'
 				})
 			}
 		}
