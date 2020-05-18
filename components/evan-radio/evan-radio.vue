@@ -3,7 +3,7 @@
 		<slot v-if="$slots.icon" name="icon"></slot>
 		<template v-else>
 			<uni-icons v-if="icon" :type="icon" :size="iconSize" :color="iconColor"></uni-icons>
-			<view v-else class="evan-radio__inner" :class="['evan-radio__inner--'+shape]" :style="{width:iconSize+'px',height:iconSize+'px',backgroundColor:innerBackgroundColor,borderColor:innerBorderColor}">
+			<view v-else class="evan-radio__inner" :class="['evan-radio__inner--'+shape]" :style="{width:iconSize+4+'px',height:iconSize+4+'px',backgroundColor:innerBackgroundColor,borderColor:innerBorderColor}">
 				<uni-icons v-if="isChecked" type="checkmarkempty" :size="iconSize" :color="isDisabled?'#c8c9cc':'#fff'"></uni-icons>
 			</view>
 		</template>
@@ -43,7 +43,7 @@
 			},
 			iconSize: {
 				type: Number,
-				default: 20
+				default: 16
 			},
 			primaryColor: {
 				type: String,
@@ -169,6 +169,7 @@
 				if (this.currentValue !== this.label) {
 					this.currentValue = this.label
 					this.$emit('input', this.currentValue)
+					this.$emit('change', this.currentValue)
 					if (this.isGroup) {
 						let parent = this.getParent()
 						parent.onRadioChange(this.label)
@@ -176,6 +177,7 @@
 				} else if (this.clearable) {
 					this.currentValue = null
 					this.$emit('input', this.currentValue)
+					this.$emit('change', this.currentValue)
 					if (this.isGroup) {
 						let parent = this.getParent()
 						parent.onRadioChange(null)

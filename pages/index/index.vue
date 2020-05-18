@@ -80,12 +80,22 @@
 				<evan-radio ref="listRadio" :preventClick="true" :label="item.value">
 					<template slot="icon">
 						<view>
-							<uni-icons v-if="color2===item.value" type="checkmarkempty" size="30" color="#108ee9"></uni-icons>
+							<uni-icons v-if="color2===item.value" type="checkmarkempty" size="26" color="#108ee9"></uni-icons>
 						</view>
 					</template>
 				</evan-radio>
 			</view>
 		</evan-radio-group>
+
+		<view class="evan-radio-show__title">
+			<text class="evan-radio-show__title__item">popup模式基本用法</text>
+		</view>
+
+		<evan-radio-popup v-model="color2" @confirm="onGroupChange" @objConfirm="onObjConfirm" :options="colorList">
+			<template v-slot:trigger="{label}">
+				<view>{{label||'请选择'}}</view>
+			</template>
+		</evan-radio-popup>
 		<!-- #ifdef APP-PLUS -->
 		<button @click="goNvue">nvue页面</button>
 		<!-- #endif -->
@@ -93,15 +103,7 @@
 </template>
 
 <script>
-	import EvanRadio from '@/components/evan-radio/evan-radio.vue'
-	import EvanRadioGroup from '@/components/evan-radio/evan-radio-group.vue'
-	import UniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
-		components: {
-			EvanRadio,
-			EvanRadioGroup,
-			UniIcons
-		},
 		data() {
 			return {
 				radioValue: 'base',
@@ -143,6 +145,9 @@
 		},
 		methods: {
 			onGroupChange(e) {
+				console.log(e)
+			},
+			onObjConfirm(e) {
 				console.log(e)
 			},
 			onRadioClick(index) {

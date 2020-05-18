@@ -71,7 +71,7 @@
 				<evan-radio ref="listRadio" :preventClick="true" :label="item.value">
 					<template slot="icon">
 						<view>
-							<uni-icons v-if="color2===item.value" type="checkmarkempty" size="30" color="#108ee9"></uni-icons>
+							<uni-icons v-if="color2===item.value" type="checkmarkempty" size="26" color="#108ee9"></uni-icons>
 						</view>
 					</template>
 				</evan-radio>
@@ -81,15 +81,7 @@
 </template>
 
 <script>
-	import EvanRadio from '@/components/evan-radio/evan-radio.vue'
-	import EvanRadioGroup from '@/components/evan-radio/evan-radio-group.vue'
-	import UniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
-		components: {
-			EvanRadio,
-			EvanRadioGroup,
-			UniIcons
-		},
 		data() {
 			return {
 				radioValue: 'base',

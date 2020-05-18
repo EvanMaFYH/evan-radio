@@ -74,6 +74,26 @@ export default{
 </evan-radio>
 ```
 
+#### 3.EvanRadioPopup中使用到了解构插槽，目前uniapp似乎在这一块问题还比较多，如果要在同一个页面使用多个EvanRadioPopup组件时记得要import多个，不然目前slot中的内容的样式除了第一个都会被最后一个影响，预计官方在下个版本修复，参考[这里](https://github.com/dcloudio/uni-app/issues/1662)
+```
+<evan-radio-popup></evan-radio-popup>
+<evan-radio-popup2></evan-radio-popup2>
+<evan-radio-popup3></evan-radio-popup3>
+
+import EvanRadioPopup from '@/components/evan-checkbox/evan-checkbox-popup.vue'
+import EvanRadioPopup2 from '@/components/evan-checkbox/evan-checkbox-popup.vue'
+import EvanRadioPopup3 from '@/components/evan-checkbox/evan-checkbox-popup.vue'
+export default{
+    components:{
+        EvanRadioPopup,
+        EvanRadioPopup2,
+        EvanRadioPopup3
+    }
+}
+```
+
+#### 4.如果层级出现问题去调一下uniPopup组件的层级试试（uniPopup组件推荐将popup写在其他元素后面，但是目前是在组件中的，因此如果嵌套比较深可能无法弹出）   
+
 ### evan-radio props
 | 参数           | 说明            | 类型    | 可选值     | 默认值  |    
 | :-------------------- | :------------------------------ | :---------- | :-------- | :--- |  
@@ -108,3 +128,30 @@ export default{
 | name | 说明 | 回调参数 |
 | :--- | :---------------- | ------------------|
 | change | 选中的值发生变化 | 新的选中的值 |
+
+### evan-radio-popup props   
+| 参数           | 说明            | 类型    | 可选值     | 默认值  |    
+| :------------- | :------------------------------ | :------ | :----- | :--- |  
+| v-model | 选中项的label | string/number/boolean | - | - |
+| options | 选项数组 | array | - | - |
+| optionLabel | 选项数组中显示内容对应键名 | string | - | label |
+| optionValue | 选项数组中value内容对应键名 | string | - | value |
+| primary-color | 主题色 | string | - | #108ee9 |
+| cancelText | 取消按钮的文字 | string | - | 取消 |
+| confirmText | 确定按钮的文字 | string | - | 确定 |
+| title | 标题的文字 | string | - | 请选择 |
+| clearable | 选中的选项再次点击能否取消选中 | boolean | - | false |
+| maskClick | 点击遮罩层是否关闭 | boolean | - | true |
+
+### evan-radio-popup slot
+| name | 说明 |
+| :--- | :---------------- |
+| - | 触发选项弹窗的元素 |
+| trigger | 触发选项弹窗的元素，会返回给父组件当前选中项的显示值 |
+
+### evan-radio-popup events
+| name | 说明 | 回调参数 |
+| :--- | :---------------- | ------------------|
+| confirm | 点击确定的回调 | 点击确定时选中值的value数组 |
+| objConfirm | 点击确定的回调 | 点击确定时选中的选项数组 |
+| cancel | 取消关闭弹窗时的回调（包括点击遮罩层关闭）| 关闭时选中值的value数组 |
