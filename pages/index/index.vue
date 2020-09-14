@@ -87,6 +87,23 @@
 			</view>
 		</evan-radio-group>
 
+		<view class="evan-checkbox-show__title">
+			<text class="evan-checkbox-show__title__item">自定义样式列表单选框组（直接v-deep修改样式）</text>
+		</view>
+		<view class="custom-radio">
+			<evan-radio-group v-model="color3">
+				<evan-radio v-for="item in colorList" :key="item.value" :label="item.value">
+					{{item.label}}
+					<template slot="icon">
+						<view>
+							<uni-icons v-if="color3===item.value" type="checkmarkempty" size="26" color="#108ee9"></uni-icons>
+						</view>
+					</template>
+				</evan-radio>
+			</evan-radio-group>
+
+		</view>
+
 		<view class="evan-radio-show__title">
 			<text class="evan-radio-show__title__item">popup模式基本用法</text>
 		</view>
@@ -116,6 +133,7 @@
 				disabledValue: 'disabled1',
 				color1: 'red',
 				color2: 'green',
+				color3: 'blue',
 				colorClear: 'red',
 				colorList: [{
 						label: '红色',
@@ -191,6 +209,19 @@
 				color: #333;
 				flex: 1;
 				margin-right: 6px;
+			}
+		}
+		.custom-radio {
+			::v-deep {
+				.evan-radio {
+					height: 50px;
+					border-bottom: 1px solid #eee;
+					flex-direction: row-reverse;
+		
+					&__label {
+						flex: 1;
+					}
+				}
 			}
 		}
 	}
